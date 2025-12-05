@@ -193,7 +193,7 @@
         }
     </style>
 
-    <script src="./style/js/combined-table.js"></script>
+    <script src="./style/js/lookbench-leaderboard.js"></script>
 
 </head>
 
@@ -296,60 +296,35 @@
             <div class="column is-four-fifths">
                 <h2 class="title is-3">🔔 News</h2>
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                    <img src="https://hits.sh/famma-bench.famma.svg?view=total&color=green&labelColor=grey&label=Visitors&style=flat&extraCount=3000" alt="Visitor count"
+                    <img src="https://hits.sh/lookbench.github.io.svg?view=total&color=green&labelColor=grey&label=Visitors&style=flat&extraCount=1000" alt="Visitor count"
                          style="height: 20px;"/>
-                    <span style="color: #666; font-size: 0.9em;">Last updated: June 2024</span>
+                    <span style="color: #666; font-size: 0.9em;">Last updated: December 2025</span>
                 </div>
                 <div class="content has-text-justified">
-                    <p style="margin: 5px 0"><b>🚀 [2025-05-20]: Release of answers and explanations for <a
-                            href="https://huggingface.co/datasets/weaverbirdllm/famma">FAMMA-LivePro</a> dataset; these responses are masked via Base64 encoding to prevent data leakage.
-                         🌟</b></p>
-                    <p style="margin: 5px 0"><b>🚀 [2025-04-22]: Release of <a
-                            href="https://huggingface.co/datasets/weaverbirdllm/famma-reasoning">FAMMA-Reasoning</a> dataset, an extension of FAMMA featuring richly annotated, high-quality reasoning chains distilled from DeepSeek-R1.
-                         🌟</b></p>
-                    <p style="margin: 5px 0"><b>🚀 [2025-03-01]: Release of <a
-                            href="https://huggingface.co/datasets/weaverbirdllm/famma">FAMMA-Basic-Txt, FAMMA-LivePro-Txt</a> dataset,
-                        two purely textual datasets that utilize OCR to extract multimodal information and convert it into textual context for each question in FAMMA-Basic and FAMMA-LivePro, respectively! 🌟</b></p>
-                    <p style="margin: 5px 0"><b>🔥 [2025-02-01]: Initial release of <a
-                            href="https://huggingface.co/datasets/weaverbirdllm/famma">FAMMA-LivePro</a> dataset,
-                        collected from invited experts! 🌟</b></p>
-                    <p style="margin: 5px 0"><b>🔥 [2025-01-01]: Full release of <a
-                            href="https://huggingface.co/datasets/weaverbirdllm/famma">FAMMA-Basic</a> dataset, now
-                        including answers and explanations with enhanced quality! 🌟</b></p>
-                    <p style="margin: 5px 0"><b>🔥 [2024-10-06]: Initial public release of FAMMA benchmark (based on the
-                        <a href="https://huggingface.co/datasets/weaverbirdllm/famma">FAMMA-Basic</a> dataset), along
-                        with our paper <a href="https://arxiv.org/abs/2410.04526">FAMMA: A Benchmark for Financial
-                            Domain Multilingual Multimodal Question Answering</a>. We welcome all submissions and look
-                        forward to your participation! 😆</b></p>
+                    <p style="margin: 5px 0"><b>🚀 [2025-12-15]: Initial release of <b>LookBench v2512</b> with 4 diverse subtasks across AI-generated and real-world scenarios! 🌟</b></p>
+                    <p style="margin: 5px 0"><b>🔥 [2025-12-15]: Release of <b>GR-Pro</b> (proprietary) and <b>GR-Lite</b> (open-source) models achieving state-of-the-art performance! 🎉</b></p>
                 </div>
                 <h2 class="title is-3">Introduction</h2>
                 <div class="content has-text-justified">
                     <p>
-                        <b>FAMMA</b> is a multilingual multimodal financial question-answering benchmark dataset with
-                        the following key features:
+                        <b>LookBench</b> is a comprehensive fashion image retrieval benchmark featuring:
                     <ul>
-                        <li>To minimize potential data contamination, new questions are released regularly, with a full
-                            benchmark refreshed every six months. Currently, the dataset includes four releases, totaling
-                            approximately 4,000 questions:
+                        <li><b>Four Diverse Subtasks</b>:
                             <ul>
-                                <li><b>FAMMA-Basic</b>: it contains 1,935 questions sourced from online materials,
-                                    with corresponding answers and explanations.
-                                </li>
-                                <li><b>FAMMA-Basic-Txt</b>: a textual version of FAMMA-Basic, where OCR has been used to extract multimodal information and convert it into contextual text for each question.
-                                </li>
-                                <li><b>FAMMA-LivePro</b>: it includes 103 expert-curated questions, provided without
-                                    answers. This release serves as a <b>live benchmark</b> in its current stage.
-                                </li>
-                                <li><b>FAMMA-LivePro-Txt</b>: A textual version of FAMMA-LivePro, generated using OCR to extract and represent the questions in text format.
-                                </li>
+                                <li><b>AI-Gen StreetLook</b>: AI-generated street fashion scenarios</li>
+                                <li><b>Real StreetLook</b>: Real-world street fashion images</li>
+                                <li><b>AI-Gen Studio</b>: AI-generated studio fashion photography</li>
+                                <li><b>Real Studio</b>: Professional studio fashion photography</li>
                             </ul>
                         </li>
-                        <li>The dataset features three diverse image types—tables, charts, and text/math screenshots—and
-                            spans eight financial subfields, ensuring broad coverage across major asset classes. Each
-                            question is categorized by difficulty level (<b>easy</b>, <b>medium</b>, <b>hard</b>) and is
-                            available in three languages (<b>English</b>, <b>Chinese</b>, and <b>French</b>).
-                            Additionally, questions are classified into two formats: <b>multiple-choice</b> and <b>open-ended</b>.
+                        <li><b>Three Key Metrics</b>:
+                            <ul>
+                                <li><b>Coarse Recall</b>: Measures broad retrieval accuracy</li>
+                                <li><b>Fine Recall</b>: Evaluates precise matching capability</li>
+                                <li><b>nDCG</b>: Normalized Discounted Cumulative Gain for ranking quality</li>
+                            </ul>
                         </li>
+                        <li><b>Multiple Evaluation Points</b>: @1, @5, @10, and @20 for comprehensive performance assessment</li>
                     </ul>
                     </p>
                 </div>
@@ -370,126 +345,52 @@
                     <span class="leaderboard-label proprietary">Proprietary</span>
                 </div>
 
-                <!-- FIRST TABLE: LivePro (was previously second) -->
-                <h3 class="title is-4 has-text-centered">FAMMA-LivePro</h3>
+                <h6 class="title is-6 has-text-centered" style="margin-top: 20px; margin-bottom: 15px;">Released on 2025-12</h6>
 
-                <h6 class="title is-6 has-text-centered">Released on 2025-01</h6>
+                <!-- Subtask Tabs -->
+                <div class="table-tabs">
+                    <div class="table-tab active" onclick="switchSubtask('real-studio')">Real Studio</div>
+                    <div class="table-tab" onclick="switchSubtask('real-streetlook')">Real StreetLook</div>
+                    <div class="table-tab" onclick="switchSubtask('ai-gen-streetlook')">AI-Gen StreetLook</div>
+                    <div class="table-tab" onclick="switchSubtask('ai-gen-studio')">AI-Gen Studio</div>
+                </div>
 
                 <div class="leaderboard-container">
                     <div class="table-wrapper">
-                        <table id="live-table" class="mmmu-table">
+                        <table id="lookbench-table" class="mmmu-table">
                             <thead>
                             <tr>
-                                <th rowspan="2" style="width: 200px;">Model</th>
-                                <th id="arithmetic-header-live" class="section-header"
-                                    onclick="toggleTableSection('arithmetic', 'live')" style="cursor:pointer;"
-                                    colspan="4">Arithmetic (Pass@1)
-                                </th>
-                                <th id="no-arithmetic-header-live" class="section-header"
-                                    onclick="toggleTableSection('no-arithmetic', 'live')" style="cursor:pointer;"
-                                    colspan="4">Non-Arithmetic (Pass@1)
-                                </th>
-                                <th id="overall-header-live" class="section-header"
-                                    onclick="toggleTableSection('overall', 'live')"
-                                    style="cursor:pointer; width: 150px;" colspan="1">Overall (Pass@1)
-                                </th>
+                                <th rowspan="2" style="width: 180px; border-right: 1px solid #ccc;">Model</th>
+                                <th colspan="4" class="section-header metric-group">Coarse Recall</th>
+                                <th colspan="4" class="section-header metric-group">Fine Recall</th>
+                                <th colspan="4" class="section-header">nDCG</th>
                             </tr>
                             <tr>
-                                <!-- Headers remain the same -->
-                                <th id="arithmetic-main-live" class="sortable" data-sort="number">Overall</th>
-                                <th id="arithmetic-detail-1-live" class="detail-cell" data-sort="number">Easy</th>
-                                <th id="arithmetic-detail-2-live" class="detail-cell" data-sort="number">Medium</th>
-                                <th id="arithmetic-detail-3-live" class="detail-cell" data-sort="number">Hard</th>
-
-                                <th id="no-arithmetic-main-live" class="sortable" data-sort="number">Overall</th>
-                                <th id="no-arithmetic-detail-1-live" class="detail-cell" data-sort="number">Easy</th>
-                                <th id="no-arithmetic-detail-2-live" class="detail-cell" data-sort="number">Medium</th>
-                                <th id="no-arithmetic-detail-3-live" class="detail-cell" data-sort="number">Hard</th>
-
-                                <th id="overall-main-live" class="sortable sorted-desc" data-sort="number"
-                                    style="width: 150px;">Overall
-                                </th>
-                                <th id="overall-detail-1-live" class="detail-cell hidden" data-sort="number">Easy</th>
-                                <th id="overall-detail-2-live" class="detail-cell hidden" data-sort="number">Medium</th>
-                                <th id="overall-detail-3-live" class="detail-cell hidden" data-sort="number">Hard</th>
+                                <th class="sortable" data-sort="number">@1</th>
+                                <th class="sortable" data-sort="number">@5</th>
+                                <th class="sortable" data-sort="number">@10</th>
+                                <th class="sortable metric-group-last" data-sort="number">@20</th>
+                                
+                                <th class="sortable" data-sort="number">@1</th>
+                                <th class="sortable" data-sort="number">@5</th>
+                                <th class="sortable" data-sort="number">@10</th>
+                                <th class="sortable metric-group-last" data-sort="number">@20</th>
+                                
+                                <th class="sortable sorted-desc" data-sort="number">@1</th>
+                                <th class="sortable" data-sort="number">@5</th>
+                                <th class="sortable" data-sort="number">@10</th>
+                                <th class="sortable" data-sort="number">@20</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <!-- Live table body will be populated dynamically -->
+                            <!-- Table body will be populated dynamically -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <p class="test-desc">Overall results of different models on the FAMMA-LivePro leaderboard. The
-                    best-performing
-                    model in each category is <b>in-bold</b>, and the second best is <u>underlined</u>.<br>*: use OCR to
-                    extract the image content and pass to the model.
-                    <br>GPT o1 version: 2024-12-17, o1-mini version: 2024-09-12, 4o version: 2024-08-06
-                    <br>Deepseek-R1 version: 2025-01-20, Qwen-QwQ-32B version: 2025-03-05, Qwen-VL-Max version:
-                    2025-01-25
-                    <br>Claude 3.5 Sonnet version: 2024-10-22
-                    <br>Gemini 2.0 Flash Thinking version: exp-0120, Gemini 1.5 Pro version: 002</p>
-
-                <!-- SECOND TABLE: Base (was previously first) -->
-                <h3 class="title is-4 has-text-centered" style="margin-top: 40px;">FAMMA-Basic</h3>
-
-                <h6 class="title is-6 has-text-centered">Released on 2024-06</h6>
-
-                <div class="leaderboard-container">
-                    <div class="table-wrapper">
-                        <table id="base-table" class="mmmu-table">
-                            <thead>
-                            <tr>
-                                <th rowspan="2" style="width: 200px;">Model</th>
-                                <th id="arithmetic-header-base" class="section-header"
-                                    onclick="toggleTableSection('arithmetic', 'base')" style="cursor:pointer;"
-                                    colspan="4">Arithmetic (Pass@1)
-                                </th>
-                                <th id="no-arithmetic-header-base" class="section-header"
-                                    onclick="toggleTableSection('no-arithmetic', 'base')" style="cursor:pointer;"
-                                    colspan="4">Non-Arithmetic (Pass@1)
-                                </th>
-                                <th id="overall-header-base" class="section-header"
-                                    onclick="toggleTableSection('overall', 'base')"
-                                    style="cursor:pointer; width: 150px;" colspan="1">Overall (Pass@1)
-                                </th>
-                            </tr>
-                            <tr>
-                                <!-- Headers remain the same -->
-                                <th id="arithmetic-main-base" class="sortable" data-sort="number">Overall</th>
-                                <th id="arithmetic-detail-1-base" class="detail-cell" data-sort="number">Easy</th>
-                                <th id="arithmetic-detail-2-base" class="detail-cell" data-sort="number">Medium</th>
-                                <th id="arithmetic-detail-3-base" class="detail-cell" data-sort="number">Hard</th>
-
-                                <th id="no-arithmetic-main-base" class="sortable" data-sort="number">Overall</th>
-                                <th id="no-arithmetic-detail-1-base" class="detail-cell" data-sort="number">Easy</th>
-                                <th id="no-arithmetic-detail-2-base" class="detail-cell" data-sort="number">Medium</th>
-                                <th id="no-arithmetic-detail-3-base" class="detail-cell" data-sort="number">Hard</th>
-
-                                <th id="overall-main-base" class="sortable sorted-desc" data-sort="number"
-                                    style="width: 150px;">Overall
-                                </th>
-                                <th id="overall-detail-1-base" class="detail-cell hidden" data-sort="number">Easy</th>
-                                <th id="overall-detail-2-base" class="detail-cell hidden" data-sort="number">Medium</th>
-                                <th id="overall-detail-3-base" class="detail-cell hidden" data-sort="number">Hard</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <!-- Base table body will be populated dynamically -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <p class="test-desc">Overall results of different models on the FAMMA leaderboard. The best-performing
-                    model in each category is <b>in-bold</b>, and the second best is <u>underlined</u>. <br>*: use OCR
-                    to extract the image content and pass to the model.
-                    <br>GPT o1 version: 2024-12-17, o1-mini version: 2024-09-12, 4o version: 2024-08-06
-                    <br>Deepseek-R1 version: 2025-01-20, Qwen-QwQ-32B version: 2025-03-05, Qwen-VL-Max version:
-                    2025-01-25
-                    <br>Claude 3.5 Sonnet version: 2024-10-22
-                    <br>Gemini 2.0 Flash Thinking version: exp-0120, Gemini 2.0 Flash version: exp, Gemini 2.0 Pro version: exp-0205, Gemini 1.5 Pro version: 002</p>
+                <p class="test-desc">Results of different models on LookBench. The best-performing model in each metric is <b>in-bold</b>, and the second best is <u>underlined</u>.
+                    <br><b>GR-Pro</b> and <b>GR-Lite</b> are our proprietary and open-source models respectively.</p>
             </div>
         </div>
     </div>
@@ -541,224 +442,6 @@
     </div>
 </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const slider = document.querySelector('.slider input');
-        const tooltip = document.querySelector('.date-tooltip');
-        const dates = ['2024-06', '2025-01'];
-        const sliderWidth = slider.offsetWidth;
-
-        function updateTooltip(value) {
-            tooltip.textContent = dates[value];
-            const percent = value / (slider.max - slider.min);
-            const thumbWidth = 20;
-            const offset = percent * (sliderWidth - thumbWidth);
-            tooltip.style.left = `${offset + thumbWidth / 2}px`;
-
-            // Create a clean single line with the gradient
-            const percentage = value * 100;
-            slider.style.background = `linear-gradient(to right, #007bff ${percentage}%, #e0e0e0 ${percentage}%)`;
-            slider.style.backgroundSize = '100% 3px';  /* Increased to match new height */
-            slider.style.backgroundRepeat = 'no-repeat';
-        }
-
-        slider.addEventListener('input', function () {
-            updateTooltip(this.value);
-        });
-
-        // Initialize with default value
-        updateTooltip(slider.value);
-    });
-</script>
-
-<script>
-    function toggleTableSection(section) {
-        console.log("Toggling section:", section);
-
-        const header = document.getElementById(`${section}-header`);
-        if (!header) return;
-
-        const isExpanded = header.getAttribute('colspan') === '4';
-
-        // Toggle this section
-        if (isExpanded) {
-            // Collapse
-            header.setAttribute('colspan', '1');
-            header.textContent = header.textContent.replace('[-]', '[+]');
-
-            // Hide detail headers
-            for (let i = 1; i <= 3; i++) {
-                const detailEl = document.getElementById(`${section}-detail-${i}`);
-                if (detailEl) detailEl.classList.add('hidden');
-            }
-        } else {
-            // Expand
-            header.setAttribute('colspan', '4');
-            header.textContent = header.textContent.replace('[+]', '[-]');
-
-            // Show detail headers
-            for (let i = 1; i <= 3; i++) {
-                const detailEl = document.getElementById(`${section}-detail-${i}`);
-                if (detailEl) detailEl.classList.remove('hidden');
-            }
-        }
-
-        // Call updateTableColumnVisibility after toggling
-        if (typeof updateTableColumnVisibility === 'function') {
-            updateTableColumnVisibility();
-        }
-    }
-</script>
-
-<!-- Add this script at the end of index.html, right before </body> -->
-<script>
-    // Simple function to initialize the table with expanded columns
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log('DOM loaded, initializing table');
-
-        // Wait a bit for everything to load
-        setTimeout(function () {
-            // Set the column headers to be expanded
-            const arithHeader = document.getElementById('arithmetic-header');
-            const noArithHeader = document.getElementById('no-arithmetic-header');
-
-            if (arithHeader) arithHeader.setAttribute('colspan', '4');
-            if (noArithHeader) noArithHeader.setAttribute('colspan', '4');
-
-            // Update the text
-            if (arithHeader) arithHeader.textContent = arithHeader.textContent.replace('[+]', '[-]');
-            if (noArithHeader) noArithHeader.textContent = noArithHeader.textContent.replace('[+]', '[-]');
-
-            // Show the detail headers
-            for (let i = 1; i <= 3; i++) {
-                document.getElementById(`arithmetic-detail-${i}`)?.classList.remove('hidden');
-                document.getElementById(`no-arithmetic-detail-${i}`)?.classList.remove('hidden');
-            }
-
-            // Make sure the model name column is the right width
-            document.querySelectorAll('#combined-mmmu-table td:first-child, #combined-mmmu-table th:first-child').forEach(cell => {
-                cell.style.width = '200px';
-                cell.style.maxWidth = '200px';
-            });
-
-            console.log('Table initialized');
-        }, 1000);
-    });
-</script>
-
-<script>
-    // Debug script - add this at the end of index.html
-    document.addEventListener('DOMContentLoaded', function () {
-        // Wait a bit for the table to load
-        setTimeout(function () {
-            console.log("Running debug checks on table...");
-
-            // Check if table body has rows
-            const tableBody = document.querySelector('#combined-mmmu-table tbody');
-            if (tableBody) {
-                console.log(`Table body found with ${tableBody.children.length} rows`);
-
-                // Check first row data
-                if (tableBody.children.length > 0) {
-                    const firstRow = tableBody.children[0];
-                    console.log(`First row has ${firstRow.cells.length} cells`);
-
-                    // Log cell contents
-                    Array.from(firstRow.cells).forEach((cell, i) => {
-                        console.log(`Cell ${i}: ${cell.textContent.trim()} (class: ${cell.className})`);
-                    });
-                }
-            } else {
-                console.error("Table body not found!");
-            }
-
-            // Check header states
-            const headers = {
-                arithmetic: document.getElementById('arithmetic-header'),
-                noArithmetic: document.getElementById('no-arithmetic-header'),
-                overall: document.getElementById('overall-header')
-            };
-
-            console.log("Header states:", {
-                arithmetic: headers.arithmetic ?
-                    `colspan=${headers.arithmetic.getAttribute('colspan')}, text=${headers.arithmetic.textContent}` : 'not found',
-                noArithmetic: headers.noArithmetic ?
-                    `colspan=${headers.noArithmetic.getAttribute('colspan')}, text=${headers.noArithmetic.textContent}` : 'not found',
-                overall: headers.overall ?
-                    `colspan=${headers.overall.getAttribute('colspan')}, text=${headers.overall.textContent}` : 'not found'
-            });
-        }, 2000);
-    });
-</script>
-
-<script>
-    // Add this as the very last script in index.html, right before </body>
-    (function () {
-        console.clear(); // Clear previous console logs
-        console.log("Running final table cleanup script...");
-
-        // Function to directly fix the non-arithmetic section which seems to be broken
-        function fixTable() {
-            // Get all rows in the table
-            const rows = document.querySelectorAll('#combined-mmmu-table tbody tr');
-            if (rows.length === 0) {
-                console.log("No rows found in table, will try again in 1 second");
-                setTimeout(fixTable, 1000);
-                return;
-            }
-
-            console.log(`Found ${rows.length} rows, fixing data display`);
-
-            // For each row, make sure all cells are visible
-            rows.forEach((row, index) => {
-                if (row.cells.length < 13) {
-                    console.error(`Row ${index} has only ${row.cells.length} cells`);
-                    return;
-                }
-
-                // Make arithmetic and non-arithmetic detail cells visible
-                for (let i = 2; i <= 4; i++) {
-                    row.cells[i]?.classList.remove('hidden');
-                }
-                for (let i = 6; i <= 8; i++) {
-                    row.cells[i]?.classList.remove('hidden');
-                }
-
-                // The above cells should be visible
-                // For each visible cell, check if it has content
-                for (let i = 0; i < row.cells.length; i++) {
-                    if (i >= 2 && i <= 4 || i >= 6 && i <= 8) {
-                        const content = row.cells[i].textContent.trim();
-                        if (content === '' || content === '-') {
-                            console.warn(`Row ${index} cell ${i} is empty, inserting placeholder`);
-                            row.cells[i].innerHTML = '<span style="color:#888">0.00%</span>';
-                        }
-                    }
-                }
-            });
-
-            // Make sure the section headers are correct
-            document.getElementById('arithmetic-header').setAttribute('colspan', '4');
-            document.getElementById('arithmetic-header').textContent = 'Arithmetic';
-
-            document.getElementById('no-arithmetic-header').setAttribute('colspan', '4');
-            document.getElementById('no-arithmetic-header').textContent = 'Non-Arithmetic';
-
-            // Show all detail headers
-            for (let i = 1; i <= 3; i++) {
-                document.getElementById(`arithmetic-detail-${i}`)?.classList.remove('hidden');
-                document.getElementById(`no-arithmetic-detail-${i}`)?.classList.remove('hidden');
-            }
-
-            console.log("Table fixed!");
-        }
-
-        // Run immediately and also after a delay to catch late-loaded data
-        fixTable();
-        setTimeout(fixTable, 1500);
-        setTimeout(fixTable, 3000);
-    })();
-</script>
 
 </body>
 

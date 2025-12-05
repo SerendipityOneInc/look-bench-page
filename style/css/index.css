@@ -34,6 +34,48 @@ body {
   background-color: rgba(117, 209, 215, 0.1);
 }
 
+/* Row-level styling for leaderboard */
+tr.open_source {
+  background-color: rgba(249, 242, 248, 1) !important;
+}
+
+tr.proprietary {
+  background-color: rgba(117, 209, 215, 0.1) !important;
+}
+
+tr.open_source:hover, tr.proprietary:hover {
+  filter: brightness(0.95);
+}
+
+/* Vertical lines between metric groups */
+.metric-group {
+  border-right: 1px solid #ccc !important;
+}
+
+.metric-group-last {
+  border-right: 1px solid #ccc !important;
+}
+
+/* Sortable header styling */
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+th.sortable:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+th.sorted-asc::after {
+  content: " ▲";
+  font-size: 0.8em;
+}
+
+th.sorted-desc::after {
+  content: " ▼";
+  font-size: 0.8em;
+}
+
 .random_frequent {
   background-color: #f4f9fe;
   color: #808080;
