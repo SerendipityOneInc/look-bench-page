@@ -1,4 +1,9 @@
+## LookBench: A Live and Holistic Open Benchmark for Fashion Image Retrieval
 
-## FAMMA: A Benchmark for Financial Domain Multilingual Multimodal Question Answering
+[**🏆 Leaderboard**](https://lookbench.github.io/) | [**🤗 Dataset**](https://huggingface.co/datasets/srpone/look-bench) | [**🤗 Model**](https://huggingface.co/srpone/gr-lite) | [**📚 Collection**](https://huggingface.co/collections/srpone/look-bench)
 
-[**🏆 Leaderboard**](https://famma-bench.github.io/famma/) | [**🤗 FAMMA**](https://huggingface.co/datasets/weaverbirdllm/famma)
+### Resources
+
+- **Open-Source Model (GR-Lite)**: [https://huggingface.co/srpone/gr-lite](https://huggingface.co/srpone/gr-lite)
+- **Dataset**: [https://huggingface.co/datasets/srpone/look-bench](https://huggingface.co/datasets/srpone/look-bench)
+- **Collection**: [https://huggingface.co/collections/srpone/look-bench](https://huggingface.co/collections/srpone/look-bench)

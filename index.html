@@ -228,15 +228,12 @@
                                 <div class="is-size-6 publication-authors" style="line-height: 1.6; max-width: 900px; margin: 0 auto;">
                 <span class="author-block">Chao Gao, </span>
                                     <span class="author-block">Siqiao Xue, </span>
-                                    <span class="author-block">Ke Du, </span>
                                     <span class="author-block">Fan Zhou, </span>
-                                    <span class="author-block">Jiwen Fu, </span>
-                                    <span class="author-block">Weiwei Qin, </span>
-                                    <span class="author-block">Shanshan Li, </span>
+                                    <span class="author-block">Ke Du, </span>
                                     <span class="author-block">Yiming Peng, </span>
+                                    <span class="author-block">Jiwen Fu, </span>
                                     <span class="author-block">Tingyi Gu, </span>
-                                    <span class="author-block">Xiaoming Dong, </span>
-                                    <span class="author-block">Linxiao Wang, </span>
+                                    <span class="author-block">Shanshan Li, </span>
                                     <span class="author-block">Wenhao Xu, </span>
                                     <span class="author-block">Ning Hu</span>
                                 </div>
@@ -245,36 +242,31 @@
                                 </div>
                                 <div style="margin-top: 0px; margin-bottom: -20px;">&nbsp;</div>
                                 <div class="publication-links">
-                                    <!-- PDF Link. -->
                                     <span class="link-block">
-                <!-- @PAN TODO: change links -->
-                <a href="https://arxiv.org/abs/2410.04526"
+                <a href="https://huggingface.co/datasets/srpone/look-bench"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-
-                                    <span class="link-block">
-                <a href="https://huggingface.co/datasets/weaverbirdllm/famma"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <!-- <i class="far fa-images"></i> -->
                       <p style="font-size:18px">🤗</p>
-                      <!-- 🔗 -->
                   </span>
                   <span>Dataset</span>
                 </a>
               </span>
                                     <span class="link-block">
-                <a href="https://github.com/famma-bench/bench-script"
+                <a href="https://huggingface.co/srpone/gr-lite"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fab fa-github"></i>
+                      <p style="font-size:18px">🤗</p>
                   </span>
-                  <span>Code</span>
+                  <span>Model (GR-Lite)</span>
+                </a>
+              </span>
+                                    <span class="link-block">
+                <a href="https://huggingface.co/collections/srpone/look-bench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-layer-group"></i>
+                  </span>
+                  <span>Collection</span>
                   </a>
               </span>
                                 </div>
@@ -295,37 +287,87 @@
         <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
                 <h2 class="title is-3">🔔 News</h2>
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
                     <img src="https://hits.sh/lookbench.github.io.svg?view=total&color=green&labelColor=grey&label=Visitors&style=flat&extraCount=1000" alt="Visitor count"
                          style="height: 20px;"/>
-                    <span style="color: #666; font-size: 0.9em;">Last updated: December 2025</span>
+                    <span style="color: #666; font-size: 0.9em; font-family: 'Noto Sans', sans-serif;">Last updated: December 2025</span>
                 </div>
-                <div class="content has-text-justified">
-                    <p style="margin: 5px 0"><b>🚀 [2025-12-15]: Initial release of <b>LookBench v2512</b> with 4 diverse subtasks across AI-generated and real-world scenarios! 🌟</b></p>
-                    <p style="margin: 5px 0"><b>🔥 [2025-12-15]: Release of <b>GR-Pro</b> (proprietary) and <b>GR-Lite</b> (open-source) models achieving state-of-the-art performance! 🎉</b></p>
+                <div class="content has-text-justified" style="font-family: 'Noto Sans', sans-serif;">
+                    <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
+                        <span style="font-weight: 600;">🚀 [2025-12-15]:</span> Initial release of <b>LookBench v2512</b> with 4 diverse subtasks across AI-generated and real-world scenarios! 🌟
+                    </p>
+                    <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
+                        <span style="font-weight: 600;">🔥 [2025-12-15]:</span> Release of <b>GR-Pro</b> (proprietary) and <b>GR-Lite</b> (open-source) models achieving state-of-the-art performance! 🎉
+                    </p>
                 </div>
                 <h2 class="title is-3">Introduction</h2>
                 <div class="content has-text-justified">
                     <p>
-                        <b>LookBench</b> is a comprehensive fashion image retrieval benchmark featuring:
+                        Fashion image retrieval is a core capability for e-commerce platforms, powering visual search, product recommendation, and outfit generation. However, existing fashion benchmarks are largely static and product-centric, making them vulnerable to data contamination and overfitting. Even when street-look images are included, evaluation is typically framed as instance-level, single-item retrieval on a fixed test set, which is ill-suited for studying real user intents or for up-to-date assessment.
+                    </p>
+                    <p>
+                        <b>LookBench</b> addresses these limitations as a <b>live, holistic, and challenging benchmark</b> for fashion image retrieval in real e-commerce settings. It is built on three key principles:
+                    </p>
                     <ul>
-                        <li><b>Four Diverse Subtasks</b>:
-                            <ul>
-                                <li><b>AI-Gen StreetLook</b>: AI-generated street fashion scenarios</li>
-                                <li><b>Real StreetLook</b>: Real-world street fashion images</li>
-                                <li><b>AI-Gen Studio</b>: AI-generated studio fashion photography</li>
-                                <li><b>Real Studio</b>: Professional studio fashion photography</li>
-                            </ul>
-                        </li>
-                        <li><b>Three Key Metrics</b>:
-                            <ul>
-                                <li><b>Coarse Recall</b>: Measures broad retrieval accuracy</li>
-                                <li><b>Fine Recall</b>: Evaluates precise matching capability</li>
-                                <li><b>nDCG</b>: Normalized Discounted Cumulative Gain for ranking quality</li>
-                            </ul>
-                        </li>
-                        <li><b>Multiple Evaluation Points</b>: @1, @5, @10, and @20 for comprehensive performance assessment</li>
+                        <li><b>Continuously refreshing samples</b> to mitigate contamination. We collect time-stamped queries from recent retail sites, enabling contamination-aware evaluation by filtering test data to post-training-cutoff crawls. We periodically refresh LookBench with newly collected queries while preserving earlier snapshots.</li>
+                        <li><b>Covering diverse retrieval intents and difficulty levels</b>. LookBench comprises four evaluation subsets spanning single-item and multi-item retrieval tasks, from clean studio product images to complex street-style outfit compositions.</li>
+                        <li><b>Attribute-supervised and holistic evaluation</b>. We construct a category-specific fashion attribute taxonomy with over 100 visually grounded properties and pre-annotate all query and ranked items. This enables region-aware evaluation and attribute-conditioned analyses of retrieval behavior (e.g., matching materials, silhouettes, and colors), supporting more fine-grained diagnosis than category-only metrics.</li>
                     </ul>
+                    <p>
+                        The current release (v20251201) comprises approximately <b>2,500 queries</b>, each evaluated against a carefully curated retrieval corpus of about <b>60,000 images</b> per task:
+                    </p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Dataset</th>
+                                <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Image Source</th>
+                                <th style="border: 1px solid #ddd; padding: 10px; text-align: center;"># Retro Items</th>
+                                <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Difficulty</th>
+                                <th style="border: 1px solid #ddd; padding: 10px; text-align: center;"># Queries / Corpus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 10px;"><b>RealStudioFlat</b></td>
+                                <td style="border: 1px solid #ddd; padding: 10px;">Real studio flat-lay product photos</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Single</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Easy</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">1,011 / 62,226</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 10px;"><b>AIGen-Studio</b></td>
+                                <td style="border: 1px solid #ddd; padding: 10px;">AI-generated lifestyle studio images</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Single</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Medium</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">192 / 59,254</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 10px;"><b>RealStreetLook</b></td>
+                                <td style="border: 1px solid #ddd; padding: 10px;">Real street outfit photos</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Multi</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Hard</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">1,000 / 61,553</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 10px;"><b>AIGen-StreetLook</b></td>
+                                <td style="border: 1px solid #ddd; padding: 10px;">AI-generated street outfit compositions</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Multi</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Hard</td>
+                                <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">160 / 58,846</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        Each evaluation set is assessed using <b>three key metrics</b>:
+                    <ul>
+                        <li><b>Coarse Recall</b>: Measures broad retrieval accuracy</li>
+                        <li><b>Fine Recall</b>: Evaluates precise matching capability</li>
+                        <li><b>nDCG</b>: Normalized Discounted Cumulative Gain for ranking quality</li>
+                    </ul>
+                    All metrics are evaluated at multiple recall points: <b>@1, @5, @10, and @20</b> for comprehensive performance assessment.
+                    </p>
+                    <p>
+                        Together with our open-sourced benchmark splits, attribute annotations, and evaluation code, LookBench enables transparent, contamination-aware comparison and reproducible research in fashion image retrieval.
                     </p>
                 </div>
             </div>

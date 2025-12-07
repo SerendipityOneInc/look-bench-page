@@ -69,7 +69,7 @@ function loadTable(subtaskName) {
     
     // Model links mapping
     const modelLinks = {
-        'GR-Lite': 'https://gensmo.com/',
+        'GR-Lite': 'https://huggingface.co/srpone/gr-lite',
         'GR-Pro': 'https://gensmo.com/',
         'Marqo-fashionSigLIP': 'https://github.com/marqo-ai/marqo',
         'Marqo-fashionCLIP': 'https://github.com/marqo-ai/marqo',
