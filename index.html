@@ -240,15 +240,16 @@
                     });
                 });
                 
-                // Hide when mouse leaves title container
+                // Hide when mouse leaves title or subtitle area
                 const titleContainer = title.parentElement;
+                const subtitleContainer = subtitle ? subtitle.parentElement : null;
+                
                 if (titleContainer) {
                     titleContainer.addEventListener('mouseleave', hideAuthors);
                 }
                 
-                // Hide when mouse leaves subtitle
-                if (subtitle) {
-                    subtitle.addEventListener('mouseleave', hideAuthors);
+                if (subtitle && subtitleContainer) {
+                    subtitleContainer.addEventListener('mouseleave', hideAuthors);
                 }
             }
         });
@@ -277,27 +278,29 @@
                             <div style="display: flex; align-items: center; justify-content: center; position: relative; gap: 30px;">
                                 <img id="logo-img" src="logo/fashion-logo.jpg" alt="logo"
                                      style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; flex-shrink: 0;"/>
-                                <div style="position: relative;">
+                                <div>
                                     <h1 id="bird-title" style="margin: 0; text-align: center; margin-bottom: 10px; color: #F5F5DC; font-size: 3rem; cursor: pointer;">
                                         LookBench
                                     </h1>
-                                    <div class="author-list-hover" style="display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: rgba(60, 60, 60, 0.95); padding: 20px 25px; border-radius: 8px; z-index: 1000; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.3); min-width: 500px; text-align: center;">
-                                        <div class="is-size-6 publication-authors" style="line-height: 1.8; margin: 0 auto; color: #f5f5dc; font-size: 1.1em;">
-                                            <span class="author-block">Chao Gao<sup style="color:#c5ddf5;">*</sup>, </span>
-                                            <span class="author-block">Siqiao Xue<sup style="color:#c5ddf5;">*</sup>, </span>
-                                            <span class="author-block">Fan Zhou, </span>
-                                            <span class="author-block">Yiming Peng, </span>
-                                            <span class="author-block">Jiwen Fu, </span>
-                                            <span class="author-block">Tingyi Gu, </span>
-                                            <span class="author-block">Shanshan Li</span>
-                                        </div>
-                                        <div class="is-size-6 publication-authors" style="margin-top: 10px; color: #aaa; font-size: 1em; line-height: 1.6;">
-                                            <span class="author-block"><sup style="color:#c5ddf5;">*</sup>Equal contribution</span>
-                                        </div>
+                                </div>
+                            </div>
+                            <div style="position: relative;">
+                                <span class="subheading" id="caption" style="color:#f5f5dc; font-size: 1.5rem; cursor: pointer;">A Live and Holistic Open Benchmark for Fashion Image Retrieval</span>
+                                <div class="author-list-hover" style="display: none; position: absolute; top: calc(100% + 15px); left: 50%; transform: translateX(-50%); background: rgba(60, 60, 60, 0.95); padding: 20px 25px; border-radius: 8px; z-index: 1000; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.3); min-width: 500px; text-align: center;">
+                                    <div class="is-size-6 publication-authors" style="line-height: 1.8; margin: 0 auto; color: #f5f5dc; font-size: 1.1em;">
+                                        <span class="author-block">Chao Gao<sup style="color:#c5ddf5;">*</sup>, </span>
+                                        <span class="author-block">Siqiao Xue<sup style="color:#c5ddf5;">*</sup>, </span>
+                                        <span class="author-block">Fan Zhou, </span>
+                                        <span class="author-block">Yiming Peng, </span>
+                                        <span class="author-block">Jiwen Fu, </span>
+                                        <span class="author-block">Tingyi Gu, </span>
+                                        <span class="author-block">Shanshan Li</span>
+                                    </div>
+                                    <div class="is-size-6 publication-authors" style="margin-top: 10px; color: #aaa; font-size: 1em; line-height: 1.6;">
+                                        <span class="author-block"><sup style="color:#c5ddf5;">*</sup>Equal contribution</span>
                                     </div>
                                 </div>
                             </div>
-                            <span class="subheading" id="caption" style="color:#f5f5dc; font-size: 1.5rem;">A Live and Holistic Open Benchmark for Fashion Image Retrieval</span>
                             <div style="margin-top: 0px; margin-bottom: -10px;">&nbsp;</div>
                             <div class="column has-text-centered">
                                 <div class="is-size-6 publication-authors" style="margin-top: 8px; margin-bottom: 5px; font-style: italic;">
@@ -504,7 +507,7 @@
         <h2 class="title is-4 has-text-centered" style="margin-bottom: 0.5rem;">Visitor Map</h2>
         <div style="display: flex; justify-content: center;">
             <div style="width: 100%; max-width: 350px;">
-                <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=VacuqY9oQ7Y_ZGqwqnTb3c9ppjtgiZOiYJPRUlmyxqE"></script>
+                <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=hSRNtW5fTPOyIRpu0HusK8cE86eJ3H4261ED-Q40jek"></script>
             </div>
         </div>
     </div>
