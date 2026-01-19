@@ -22,6 +22,11 @@
             height: 60px; /* Adjust height as needed */
             width: auto; /* Maintain aspect ratio */
         }
+        
+        /* Show authors on title hover */
+        .author-list-hover {
+            transition: opacity 0.2s ease;
+        }
     </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -194,6 +199,60 @@
     </style>
 
     <script src="./style/js/lookbench-leaderboard.js"></script>
+    <script>
+        // Show authors on title or subtitle hover
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.getElementById('bird-title');
+            const subtitle = document.getElementById('caption');
+            const authorLists = document.querySelectorAll('.author-list-hover');
+            
+            function showAuthors() {
+                authorLists.forEach(list => {
+                    list.style.display = 'block';
+                });
+            }
+            
+            function hideAuthors(e) {
+                // Only hide if we're not moving to the author list
+                if (!e.relatedTarget || !e.relatedTarget.closest('.author-list-hover')) {
+                    authorLists.forEach(list => {
+                        list.style.display = 'none';
+                    });
+                }
+            }
+            
+            if (title && authorLists.length > 0) {
+                // Show on title hover
+                title.addEventListener('mouseenter', showAuthors);
+                
+                // Show on subtitle hover
+                if (subtitle) {
+                    subtitle.addEventListener('mouseenter', showAuthors);
+                }
+                
+                // Keep visible when hovering over the author list itself
+                authorLists.forEach(list => {
+                    list.addEventListener('mouseenter', function() {
+                        this.style.display = 'block';
+                    });
+                    list.addEventListener('mouseleave', function() {
+                        this.style.display = 'none';
+                    });
+                });
+                
+                // Hide when mouse leaves title container
+                const titleContainer = title.parentElement;
+                if (titleContainer) {
+                    titleContainer.addEventListener('mouseleave', hideAuthors);
+                }
+                
+                // Hide when mouse leaves subtitle
+                if (subtitle) {
+                    subtitle.addEventListener('mouseleave', hideAuthors);
+                }
+            }
+        });
+    </script>
 
 </head>
 
@@ -218,25 +277,29 @@
                             <div style="display: flex; align-items: center; justify-content: center; position: relative; gap: 30px;">
                                 <img id="logo-img" src="logo/fashion-logo.jpg" alt="logo"
                                      style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; flex-shrink: 0;"/>
-                                <h1 id="bird-title" style="margin: 0; text-align: center; margin-bottom: 10px; color: #F5F5DC; font-size: 3rem;">
-                                    LookBench
-                                </h1>
+                                <div style="position: relative;">
+                                    <h1 id="bird-title" style="margin: 0; text-align: center; margin-bottom: 10px; color: #F5F5DC; font-size: 3rem; cursor: pointer;">
+                                        LookBench
+                                    </h1>
+                                    <div class="author-list-hover" style="display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: rgba(60, 60, 60, 0.95); padding: 20px 25px; border-radius: 8px; z-index: 1000; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.3); min-width: 500px; text-align: center;">
+                                        <div class="is-size-6 publication-authors" style="line-height: 1.8; margin: 0 auto; color: #f5f5dc; font-size: 1.1em;">
+                                            <span class="author-block">Chao Gao<sup style="color:#c5ddf5;">*</sup>, </span>
+                                            <span class="author-block">Siqiao Xue<sup style="color:#c5ddf5;">*</sup>, </span>
+                                            <span class="author-block">Fan Zhou, </span>
+                                            <span class="author-block">Yiming Peng, </span>
+                                            <span class="author-block">Jiwen Fu, </span>
+                                            <span class="author-block">Tingyi Gu, </span>
+                                            <span class="author-block">Shanshan Li</span>
+                                        </div>
+                                        <div class="is-size-6 publication-authors" style="margin-top: 10px; color: #aaa; font-size: 1em; line-height: 1.6;">
+                                            <span class="author-block"><sup style="color:#c5ddf5;">*</sup>Equal contribution</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <span class="subheading" id="caption" style="color:#f5f5dc; font-size: 1.5rem;">A Live and Holistic Open Benchmark for Fashion Image Retrieval</span>
                             <div style="margin-top: 0px; margin-bottom: -10px;">&nbsp;</div>
                             <div class="column has-text-centered">
-                                <div class="is-size-6 publication-authors" style="line-height: 1.6; max-width: 900px; margin: 0 auto;">
-                <span class="author-block">Chao Gao<sup style="color:#c5ddf5;">*</sup>, </span>
-                                    <span class="author-block">Siqiao Xue<sup style="color:#c5ddf5;">*</sup>, </span>
-                                    <span class="author-block">Fan Zhou, </span>
-                                    <span class="author-block">Yiming Peng, </span>
-                                    <span class="author-block">Jiwen Fu, </span>
-                                    <span class="author-block">Tingyi Gu, </span>
-                                    <span class="author-block">Shanshan Li</span>
-                                </div>
-                                <div class="is-size-6 publication-authors" style="margin-top: 5px; margin-bottom: 5px;">
-                                    <span class="author-block" style="font-size: 0.9em; color: #888;"><sup style="color:#c5ddf5;">*</sup>Equal contribution</span>
-                                </div>
                                 <div class="is-size-6 publication-authors" style="margin-top: 8px; margin-bottom: 5px; font-style: italic;">
                                     <span class="author-block"><a href="https://gensmo.com/enterprise-solution" target="_blank" style="text-decoration: none; color: #aae0ee !important; font-size: 1.5em; font-weight: 600;">Gensmo.ai</a></span>
                                 </div>
