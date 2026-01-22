@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadBenchmarkData() {
-    fetch('./configs/release_v2512/benchmark.json')
+    fetch('./configs/release_v2601/benchmark.json')
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
