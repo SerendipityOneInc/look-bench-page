@@ -87,7 +87,7 @@ function loadTable(subtaskName) {
     };
     
     // Define proprietary models (all others are open-source)
-    const proprietaryModels = ['GR-Pro'];
+    const proprietaryModels = ['GR-Pro', 'Tianmu-MERE'];
     
     // Create table rows
     models.forEach(modelName => {
