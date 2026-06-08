@@ -404,11 +404,13 @@ td:hover {
 }
 
 /* Proprietary model indicator */
-#mmmu-table tr.proprietary td:first-child {
+#mmmu-table tr.proprietary td:first-child,
+#lookbench-table tr.proprietary td:first-child {
     border-left: 4px solid #c53030;
 }
 
 /* Open source model indicator */
-#mmmu-table tr.open_source td:first-child {
+#mmmu-table tr.open_source td:first-child,
+#lookbench-table tr.open_source td:first-child {
     border-left: 4px solid #2f855a;
 }
