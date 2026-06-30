@@ -365,11 +365,14 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
                     <img src="https://hits.sh/lookbench.github.io.svg?view=total&color=green&labelColor=grey&label=Visitors&style=flat&extraCount=1000" alt="Visitor count"
                          style="height: 20px;"/>
-                    <span style="color: #666; font-size: 0.9em; font-family: 'Noto Sans', sans-serif;">Last updated: June 2026</span>
+                    <span style="color: #666; font-size: 0.9em; font-family: 'Noto Sans', sans-serif;">Last updated: June 30, 2026</span>
                 </div>
                 <div class="content has-text-justified" style="font-family: 'Noto Sans', sans-serif;">
                     <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
-                        <span style="font-weight: 600;">🎯 [2026-06-04]:</span> New submission from <b>Kuaishou Team</b>: <b>Tianmu-MERE</b> — a multimodal embedding model for product understanding and retrieval in e-commerce, achieving strong results across all subtasks! (model weights to be open-sourced soon) 🏆
+                        <span style="font-weight: 600;">📄 [2026-06-30]:</span> New submission from <b>ZooClaw.ai</b>: <b>ZooClaw-FashionSigLIP2</b> — a SigLIP2-base model fine-tuned with knowledge distillation + WiSE-FT for robust fashion retrieval. <a href="https://arxiv.org/abs/2606.27708" target="_blank">Paper</a> · <a href="https://huggingface.co/srpone/zooclaw-fashionsiglip2" target="_blank">Model</a> 🎉
+                    </p>
+                    <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
+                        <span style="font-weight: 600;">🎯 [2026-06-04]:</span> New submission from <b>Kuaishou Team</b>: <b>Tianmu-MERE</b> — a multimodal embedding model for product understanding and retrieval in e-commerce, achieving strong results across all subtasks! Model weights are now <a href="https://huggingface.co/TianmuLab/Tianmu-MERE" target="_blank">open-sourced on HuggingFace</a>. 🏆
                     </p>
                     <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
                         <span style="font-weight: 600;">🚀 [2026-01-20]:</span> Initial release of <b>LookBench v2601</b> with 4 diverse subtasks across AI-generated and real-world scenarios, and a new open-source model GR-Lite! 🌟
@@ -456,44 +459,28 @@
                     <div class="table-tab" onclick="switchSubtask('real-streetlook')">Real StreetLook</div>
                     <div class="table-tab" onclick="switchSubtask('ai-gen-streetlook')">AI-Gen StreetLook</div>
                     <div class="table-tab" onclick="switchSubtask('ai-gen-studio')">AI-Gen Studio</div>
+                    <div class="table-tab" onclick="switchSubtask('ih-long')">ZooClaw-Fashion (long)</div>
+                    <div class="table-tab" onclick="switchSubtask('ih-short')">ZooClaw-Fashion (short)</div>
+                    <div class="table-tab" onclick="switchSubtask('fashion200k')">Fashion200k</div>
+                    <div class="table-tab" onclick="switchSubtask('hm')">H&amp;M</div>
                 </div>
 
                 <div class="leaderboard-container">
                     <div class="table-wrapper">
                         <table id="lookbench-table" class="mmmu-table">
                             <thead>
-                            <tr>
-                                <th rowspan="2" style="width: 180px; border-right: 1px solid #ccc;">Model</th>
-                                <th colspan="4" class="section-header metric-group">Coarse Recall</th>
-                                <th colspan="4" class="section-header metric-group">Fine Recall</th>
-                                <th colspan="4" class="section-header">nDCG</th>
-                            </tr>
-                            <tr>
-                                <th class="sortable" data-sort="number">@1</th>
-                                <th class="sortable" data-sort="number">@5</th>
-                                <th class="sortable" data-sort="number">@10</th>
-                                <th class="sortable metric-group-last" data-sort="number">@20</th>
-                                
-                                <th class="sortable" data-sort="number">@1</th>
-                                <th class="sortable" data-sort="number">@5</th>
-                                <th class="sortable" data-sort="number">@10</th>
-                                <th class="sortable metric-group-last" data-sort="number">@20</th>
-                                
-                                <th class="sortable sorted-desc" data-sort="number">@1</th>
-                                <th class="sortable" data-sort="number">@5</th>
-                                <th class="sortable" data-sort="number">@10</th>
-                                <th class="sortable" data-sort="number">@20</th>
-                            </tr>
+                            <!-- Table head populated dynamically per subtask -->
                             </thead>
                             <tbody>
-                            <!-- Table body will be populated dynamically -->
+                            <!-- Table body populated dynamically -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <p class="test-desc">Results of different models on LookBench. The best-performing model in each metric is <b>in-bold</b>, and the second best is <u>underlined</u>.
-                    <br><b>GR-Pro</b> and <b>GR-Lite</b> are our proprietary and open-source models respectively.</p>
+                <p class="test-desc">Results of different models. The best-performing model in each metric is <b>in-bold</b>, and the second best is <u>underlined</u>.
+                    <br><b>GR-Pro</b> and <b>GR-Lite</b> are our proprietary and open-source models respectively.
+                    <br><i>ZooClaw-Fashion</i>, <i>Fashion200k</i>, and <i>H&amp;M</i> numbers are from <a href="https://arxiv.org/abs/2606.27708" target="_blank">Xue &amp; Xu, 2026</a>. ZooClaw-Fashion reports R@1 and R@10 (long &amp; short query); Fashion200k reports pooled R@10 + MRR@10 at TREC relevance threshold &ge;3; H&amp;M reports R@10 + MRR@10. The ZooClaw-Fashion evaluation dataset will be released shortly at <code>srpone/zooclaw-fashion-eval</code>.</p>
             </div>
         </div>
     </div>
@@ -502,15 +489,21 @@
 <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
         <h2 class="title is-4 has-text-centered" style="margin-top: -130px;">BibTeX</h2>
-        <pre><code>
-@article{gao2026lookbench,
-      title={LookBench: A Live and Holistic Open Benchmark for Fashion Image Retrieval}, 
+        <pre><code>@article{gao2026lookbench,
+      title={LookBench: A Live and Holistic Open Benchmark for Fashion Image Retrieval},
       author={Chao Gao and Siqiao Xue and Yimin Peng and Jiwen Fu and Tingyi Gu and Shanshan Li and Fan Zhou},
       year={2026},
-      url={https://arxiv.org/abs/2601.14706}, 
+      url={https://arxiv.org/abs/2601.14706},
       journal={arXiv preprint arXiv:2601.14706},
 }
-    </code></pre>
+
+@article{xue2026zooclaw,
+      title={ZooClaw-FashionSigLIP2: Distilled Fine-tuning for Robust Fashion Retrieval},
+      author={Siqiao Xue and Chunxue Xu},
+      year={2026},
+      url={https://arxiv.org/abs/2606.27708},
+      journal={arXiv preprint arXiv:2606.27708},
+}</code></pre>
     </div>
 </section>
 
@@ -519,9 +512,11 @@
     <div class="container is-max-desktop content" style="max-width: 400px;">
         <h2 class="title is-4 has-text-centered" style="margin-bottom: 0.5rem;">Visitor Map</h2>
         <div style="display: flex; justify-content: center;">
-            <div style="width: 100%; max-width: 350px;">
-                <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=hSRNtW5fTPOyIRpu0HusK8cE86eJ3H4261ED-Q40jek"></script>
-            </div>
+            <a href="https://clustrmaps.com/site/1c8spx?utm_source=widget"
+               title="Visit tracker" target="_blank" rel="noopener">
+                <img src="https://www.clustrmaps.com/map_v2.png?cl=ffffff&w=350&t=tt&d=hSRNtW5fTPOyIRpu0HusK8cE86eJ3H4261ED-Q40jek&co=0085a1&ct=ffffff"
+                     alt="Visitor map" style="max-width: 100%; height: auto;"/>
+            </a>
         </div>
     </div>
 </section>

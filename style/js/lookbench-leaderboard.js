@@ -32,17 +32,75 @@ function switchSubtask(subtask) {
         tab.classList.remove('active');
     });
     event.target.classList.add('active');
-    
+
     // Map subtask ID to data key
     const subtaskMap = {
         'ai-gen-streetlook': 'AI-Gen StreetLook',
         'real-streetlook': 'Real StreetLook',
         'ai-gen-studio': 'AI-Gen Studio',
-        'real-studio': 'Real Studio'
+        'real-studio': 'Real Studio',
+        'ih-long': 'ZooClaw-Fashion (long query)',
+        'ih-short': 'ZooClaw-Fashion (short query)',
+        'fashion200k': 'Fashion200k',
+        'hm': 'H&M'
     };
-    
+
     currentSubtask = subtaskMap[subtask];
     loadTable(currentSubtask);
+}
+
+// Derive the metric/k schema by inspecting the first model entry.
+// Returns an ordered list of {metric, ks: [...]}.
+function getSchema(subtaskData) {
+    const models = Object.keys(subtaskData);
+    if (models.length === 0) return [];
+    const firstModel = subtaskData[models[0]];
+    return Object.keys(firstModel).map(metric => ({
+        metric,
+        ks: Object.keys(firstModel[metric])
+    }));
+}
+
+function buildHeader(schema) {
+    const thead = document.querySelector('#lookbench-table thead');
+    thead.innerHTML = '';
+
+    // Row 1: metric-group cells
+    const row1 = document.createElement('tr');
+    const modelTh = document.createElement('th');
+    modelTh.rowSpan = 2;
+    modelTh.style.width = '180px';
+    modelTh.style.borderRight = '1px solid #ccc';
+    modelTh.textContent = 'Model';
+    row1.appendChild(modelTh);
+
+    schema.forEach((group, gIdx) => {
+        const th = document.createElement('th');
+        th.colSpan = group.ks.length;
+        th.className = 'section-header' + (gIdx < schema.length - 1 ? ' metric-group' : '');
+        th.textContent = group.metric;
+        row1.appendChild(th);
+    });
+    thead.appendChild(row1);
+
+    // Row 2: k-value cells. Default sort on the LAST metric group's first column
+    // (nDCG@1 for LookBench tabs, MRR@10 for ZooClaw-Fashion tabs).
+    const row2 = document.createElement('tr');
+    schema.forEach((group, gIdx) => {
+        group.ks.forEach((k, kIdx) => {
+            const th = document.createElement('th');
+            const isLastInGroup = kIdx === group.ks.length - 1;
+            const notLastGroup = gIdx < schema.length - 1;
+            const isDefaultSort = gIdx === schema.length - 1 && kIdx === 0;
+            th.className = 'sortable'
+                + (isLastInGroup && notLastGroup ? ' metric-group-last' : '')
+                + (isDefaultSort ? ' sorted-desc' : '');
+            th.dataset.sort = 'number';
+            th.textContent = k;
+            row2.appendChild(th);
+        });
+    });
+    thead.appendChild(row2);
 }
 
 function loadTable(subtaskName) {
@@ -50,20 +108,24 @@ function loadTable(subtaskName) {
         console.error(`No data found for subtask: ${subtaskName}`);
         return;
     }
-    
+
     const tbody = document.querySelector('#lookbench-table tbody');
     tbody.innerHTML = '';
-    
+
     const subtaskData = benchmarkData[subtaskName];
     const models = Object.keys(subtaskData);
-    
+    const schema = getSchema(subtaskData);
+    buildHeader(schema);
+
     // Calculate best and second best for each metric
-    const bestScores = calculateBestScores(subtaskData, models);
-    
-    // Sort models by nDCG@1 (descending)
+    const bestScores = calculateBestScores(subtaskData, models, schema);
+
+    // Default sort: by the last metric group's first column (nDCG@1 / MRR@10)
+    const sortMetric = schema[schema.length - 1].metric;
+    const sortK = schema[schema.length - 1].ks[0];
     models.sort((a, b) => {
-        const aScore = subtaskData[a]['nDCG']['@1'] || 0;
-        const bScore = subtaskData[b]['nDCG']['@1'] || 0;
+        const aScore = (subtaskData[a][sortMetric] || {})[sortK] || 0;
+        const bScore = (subtaskData[b][sortMetric] || {})[sortK] || 0;
         return bScore - aScore;
     });
     
@@ -71,12 +133,16 @@ function loadTable(subtaskName) {
     const modelLinks = {
         'GR-Lite': 'https://huggingface.co/srpone/gr-lite',
         'GR-Pro': 'https://gensmo.com/enterprise-solution',
+        'Tianmu-MERE': 'https://huggingface.co/TianmuLab/Tianmu-MERE',
+        'ZooClaw-FashionSigLIP2': 'https://huggingface.co/srpone/zooclaw-fashionsiglip2',
         'Marqo-fashionSigLIP': 'https://github.com/marqo-ai/marqo',
         'Marqo-fashionCLIP': 'https://github.com/marqo-ai/marqo',
+        'LLM2CLIP': 'https://github.com/microsoft/LLM2CLIP',
         'PP-ShiTuV2': 'https://github.com/PaddlePaddle/PaddleClas',
         'CLIP-B/32': 'https://github.com/openai/CLIP',
         'CLIP-L/14': 'https://github.com/openai/CLIP',
         'SigLIP2-B/16': 'https://github.com/google-research/big_vision',
+        'SigLIP2-B/16 (zero-shot)': 'https://github.com/google-research/big_vision',
         'SigLIP2-L/16': 'https://github.com/google-research/big_vision',
         'DINOv2-ViT-L': 'https://github.com/facebookresearch/dinov2',
         'DINOv2-ViT-G': 'https://github.com/facebookresearch/dinov2',
@@ -85,9 +151,9 @@ function loadTable(subtaskName) {
         'DINOv3-ViT-7B': 'https://github.com/facebookresearch/dinov2',
         'InternViT-6B': 'https://github.com/OpenGVLab/InternVL'
     };
-    
+
     // Define proprietary models (all others are open-source)
-    const proprietaryModels = ['GR-Pro', 'Tianmu-MERE'];
+    const proprietaryModels = ['GR-Pro'];
     
     // Create table rows
     models.forEach(modelName => {
@@ -112,20 +178,20 @@ function loadTable(subtaskName) {
         }
         tr.appendChild(nameCell);
         
-        // Add metric cells
-        ['Coarse Recall', 'Fine Recall', 'nDCG'].forEach((metric, metricIndex) => {
-            ['@1', '@5', '@10', '@20'].forEach((k, kIndex) => {
+        // Add metric cells (schema-driven)
+        schema.forEach((group, gIdx) => {
+            group.ks.forEach((k, kIdx) => {
                 const cell = document.createElement('td');
-                const value = modelData[metric][k];
-                const formattedValue = value ? value.toFixed(2) : '-';
-                
-                // Add border after last column of each metric group (except last group)
-                if (kIndex === 3 && metricIndex < 2) {
+                const value = (modelData[group.metric] || {})[k];
+                const formattedValue = (value !== undefined && value !== null) ? value.toFixed(2) : '-';
+
+                // Border after the last column of each metric group (except the last group)
+                if (kIdx === group.ks.length - 1 && gIdx < schema.length - 1) {
                     cell.style.borderRight = '1px solid #ccc';
                 }
-                
+
                 // Apply styling for best/second best
-                const metricKey = `${metric}_${k}`;
+                const metricKey = `${group.metric}_${k}`;
                 if (bestScores[metricKey]) {
                     if (value === bestScores[metricKey].best) {
                         cell.innerHTML = `<b>${formattedValue}</b>`;
@@ -137,7 +203,7 @@ function loadTable(subtaskName) {
                 } else {
                     cell.textContent = formattedValue;
                 }
-                
+
                 tr.appendChild(cell);
             });
         });
@@ -189,24 +255,20 @@ function sortTableByColumn(columnIndex) {
     rows.forEach(row => tbody.appendChild(row));
 }
 
-function calculateBestScores(subtaskData, models) {
+function calculateBestScores(subtaskData, models, schema) {
     const bestScores = {};
-    const metrics = ['Coarse Recall', 'Fine Recall', 'nDCG'];
-    const ks = ['@1', '@5', '@10', '@20'];
-    
-    metrics.forEach(metric => {
-        ks.forEach(k => {
-            const scores = models.map(model => subtaskData[model][metric][k]).filter(s => s != null);
+    schema.forEach(group => {
+        group.ks.forEach(k => {
+            const scores = models
+                .map(model => (subtaskData[model][group.metric] || {})[k])
+                .filter(s => s != null);
             scores.sort((a, b) => b - a);
-            
-            const metricKey = `${metric}_${k}`;
-            bestScores[metricKey] = {
+            bestScores[`${group.metric}_${k}`] = {
                 best: scores[0],
                 secondBest: scores[1]
             };
         });
     });
-    
     return bestScores;
 }
 
