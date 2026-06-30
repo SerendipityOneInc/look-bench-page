@@ -1,6 +1,6 @@
 ## LookBench: A Live and Holistic Open Benchmark for Fashion Image Retrieval
 
-[**🏆 Leaderboard**](https://lookbench.github.io/) | [**🤗 Dataset**](https://huggingface.co/datasets/srpone/look-bench) | [**🤗 Model**](https://huggingface.co/srpone/gr-lite) | [**📚 Collection**](https://huggingface.co/collections/srpone/look-bench)
+[**🏆 Leaderboard**](https://serendipityoneinc.github.io/look-bench-page/) | [**🤗 Dataset**](https://huggingface.co/datasets/srpone/look-bench) | [**🤗 Model**](https://huggingface.co/srpone/gr-lite) | [**📚 Collection**](https://huggingface.co/collections/srpone/look-bench)
 
 ### Resources
 

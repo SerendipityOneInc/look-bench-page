@@ -41,7 +41,6 @@ function switchSubtask(subtask) {
         'real-studio': 'Real Studio',
         'ih-long': 'ZooClaw-Fashion (long query)',
         'ih-short': 'ZooClaw-Fashion (short query)',
-        'fashion200k': 'Fashion200k',
         'hm': 'H&M'
     };
 

@@ -43,28 +43,6 @@
       "MRR": { "@10": 39.10 }
     }
   },
-  "Fashion200k": {
-    "ZooClaw-FashionSigLIP2": {
-      "Recall": { "@10": 28.60 },
-      "MRR": { "@10": 92.50 }
-    },
-    "Marqo-fashionSigLIP": {
-      "Recall": { "@10": 28.30 },
-      "MRR": { "@10": 92.20 }
-    },
-    "SigLIP2-B/16 (zero-shot)": {
-      "Recall": { "@10": 26.10 },
-      "MRR": { "@10": 89.00 }
-    },
-    "LLM2CLIP": {
-      "Recall": { "@10": 24.10 },
-      "MRR": { "@10": 86.30 }
-    },
-    "Marqo-fashionCLIP": {
-      "Recall": { "@10": 23.60 },
-      "MRR": { "@10": 85.50 }
-    }
-  },
   "H&M": {
     "ZooClaw-FashionSigLIP2": {
       "Recall": { "@10": 13.60 },
