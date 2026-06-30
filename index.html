@@ -369,7 +369,7 @@
                 </div>
                 <div class="content has-text-justified" style="font-family: 'Noto Sans', sans-serif;">
                     <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
-                        <span style="font-weight: 600;">📄 [2026-06-30]:</span> New submission from <b>ZooClaw.ai</b>: <b>ZooClaw-FashionSigLIP2</b> — a SigLIP2-base model fine-tuned with knowledge distillation + WiSE-FT for robust fashion retrieval. <a href="https://arxiv.org/abs/2606.27708" target="_blank">Paper</a> · <a href="https://huggingface.co/srpone/zooclaw-fashionsiglip2" target="_blank">Model</a> 🎉
+                        <span style="font-weight: 600;">📄 [2026-06-30]:</span> New submission from <b>ZooClaw.ai</b>: <b>ZooClaw-FashionSigLIP2</b> — a SigLIP2-base model fine-tuned with knowledge distillation for robust fashion retrieval, evaluated on <b>text-image retrieval</b> tasks (ZooClaw-Fashion long/short and H&amp;M). <a href="https://arxiv.org/abs/2606.27708" target="_blank">Paper</a> · <a href="https://huggingface.co/srpone/zooclaw-fashionsiglip2" target="_blank">Model</a> 🎉
                     </p>
                     <p style="margin: 8px 0; line-height: 1.6; font-size: 1em; color: #333;">
                         <span style="font-weight: 600;">🎯 [2026-06-04]:</span> New submission from <b>Kuaishou Team</b>: <b>Tianmu-MERE</b> — a multimodal embedding model for product understanding and retrieval in e-commerce, achieving strong results across all subtasks! Model weights are now <a href="https://huggingface.co/TianmuLab/Tianmu-MERE" target="_blank">open-sourced on HuggingFace</a>. 🏆
@@ -453,20 +453,41 @@
 
                 <h6 class="title is-6 has-text-centered" style="margin-top: 20px; margin-bottom: 15px;">Released on 2026-01-20</h6>
 
+                <h4 class="title is-5 has-text-centered" style="margin-top: 20px; margin-bottom: 15px;">LookBench &mdash; Multi-attribute Image Retrieval</h4>
+
                 <!-- Subtask Tabs -->
                 <div class="table-tabs">
                     <div class="table-tab active" onclick="switchSubtask('real-studio')">Real Studio</div>
                     <div class="table-tab" onclick="switchSubtask('real-streetlook')">Real StreetLook</div>
                     <div class="table-tab" onclick="switchSubtask('ai-gen-streetlook')">AI-Gen StreetLook</div>
                     <div class="table-tab" onclick="switchSubtask('ai-gen-studio')">AI-Gen Studio</div>
-                    <div class="table-tab" onclick="switchSubtask('ih-long')">ZooClaw-Fashion (long)</div>
+                </div>
+
+                <div class="leaderboard-container">
+                    <div class="table-wrapper">
+                        <table id="lookbench-table" class="mmmu-table">
+                            <thead>
+                            <!-- Table head populated dynamically per subtask -->
+                            </thead>
+                            <tbody>
+                            <!-- Table body populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h4 class="title is-5 has-text-centered" style="margin-top: 40px; margin-bottom: 15px;">Text-Image Retrieval</h4>
+
+                <!-- Text-Image Subtask Tabs -->
+                <div class="table-tabs textimage-tabs">
+                    <div class="table-tab active" onclick="switchSubtask('ih-long')">ZooClaw-Fashion (long)</div>
                     <div class="table-tab" onclick="switchSubtask('ih-short')">ZooClaw-Fashion (short)</div>
                     <div class="table-tab" onclick="switchSubtask('hm')">H&amp;M</div>
                 </div>
 
                 <div class="leaderboard-container">
                     <div class="table-wrapper">
-                        <table id="lookbench-table" class="mmmu-table">
+                        <table id="textimage-table" class="mmmu-table">
                             <thead>
                             <!-- Table head populated dynamically per subtask -->
                             </thead>

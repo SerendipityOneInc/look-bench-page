@@ -1,6 +1,16 @@
 // LookBench Leaderboard Script
-let currentSubtask = 'Real Studio';
 let benchmarkData = null;
+
+// Subtask ID → { name, tableId }
+const SUBTASK_MAP = {
+    'ai-gen-streetlook': { name: 'AI-Gen StreetLook', tableId: 'lookbench-table' },
+    'real-streetlook':   { name: 'Real StreetLook',   tableId: 'lookbench-table' },
+    'ai-gen-studio':     { name: 'AI-Gen Studio',     tableId: 'lookbench-table' },
+    'real-studio':       { name: 'Real Studio',       tableId: 'lookbench-table' },
+    'ih-long':           { name: 'ZooClaw-Fashion (long query)',  tableId: 'textimage-table' },
+    'ih-short':          { name: 'ZooClaw-Fashion (short query)', tableId: 'textimage-table' },
+    'hm':                { name: 'H&M',                            tableId: 'textimage-table' }
+};
 
 // Load benchmark data on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -17,35 +27,28 @@ function loadBenchmarkData() {
         .then(data => {
             console.log('Benchmark data loaded successfully');
             benchmarkData = data;
-            loadTable('Real Studio');
+            loadTable('Real Studio', 'lookbench-table');
+            loadTable('ZooClaw-Fashion (long query)', 'textimage-table');
         })
         .catch(error => {
             console.error('Error loading benchmark data:', error);
-            document.querySelector('#lookbench-table tbody').innerHTML = 
+            document.querySelector('#lookbench-table tbody').innerHTML =
                 `<tr><td colspan="13">Error loading data: ${error.message}</td></tr>`;
         });
 }
 
 function switchSubtask(subtask) {
-    // Update active tab
-    document.querySelectorAll('.table-tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    event.target.classList.add('active');
+    const entry = SUBTASK_MAP[subtask];
+    if (!entry) return;
 
-    // Map subtask ID to data key
-    const subtaskMap = {
-        'ai-gen-streetlook': 'AI-Gen StreetLook',
-        'real-streetlook': 'Real StreetLook',
-        'ai-gen-studio': 'AI-Gen Studio',
-        'real-studio': 'Real Studio',
-        'ih-long': 'ZooClaw-Fashion (long query)',
-        'ih-short': 'ZooClaw-Fashion (short query)',
-        'hm': 'H&M'
-    };
+    // Update active tab within the clicked tab's container only
+    const tabContainer = event.target.closest('.table-tabs');
+    if (tabContainer) {
+        tabContainer.querySelectorAll('.table-tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+    }
 
-    currentSubtask = subtaskMap[subtask];
-    loadTable(currentSubtask);
+    loadTable(entry.name, entry.tableId);
 }
 
 // Derive the metric/k schema by inspecting the first model entry.
@@ -60,8 +63,8 @@ function getSchema(subtaskData) {
     }));
 }
 
-function buildHeader(schema) {
-    const thead = document.querySelector('#lookbench-table thead');
+function buildHeader(schema, tableId) {
+    const thead = document.querySelector(`#${tableId} thead`);
     thead.innerHTML = '';
 
     // Row 1: metric-group cells
@@ -102,19 +105,19 @@ function buildHeader(schema) {
     thead.appendChild(row2);
 }
 
-function loadTable(subtaskName) {
+function loadTable(subtaskName, tableId) {
     if (!benchmarkData || !benchmarkData[subtaskName]) {
         console.error(`No data found for subtask: ${subtaskName}`);
         return;
     }
 
-    const tbody = document.querySelector('#lookbench-table tbody');
+    const tbody = document.querySelector(`#${tableId} tbody`);
     tbody.innerHTML = '';
 
     const subtaskData = benchmarkData[subtaskName];
     const models = Object.keys(subtaskData);
     const schema = getSchema(subtaskData);
-    buildHeader(schema);
+    buildHeader(schema, tableId);
 
     // Calculate best and second best for each metric
     const bestScores = calculateBestScores(subtaskData, models, schema);
@@ -211,19 +214,19 @@ function loadTable(subtaskName) {
     });
     
     // Setup sorting after table is populated
-    setupSorting();
+    setupSorting(tableId);
 }
 
-function setupSorting() {
-    const headers = document.querySelectorAll('#lookbench-table th.sortable');
+function setupSorting(tableId) {
+    const headers = document.querySelectorAll(`#${tableId} th.sortable`);
     headers.forEach((header, index) => {
         header.style.cursor = 'pointer';
-        header.addEventListener('click', () => sortTableByColumn(index + 1)); // +1 because first column is model name
+        header.addEventListener('click', () => sortTableByColumn(tableId, index + 1)); // +1 because first column is model name
     });
 }
 
-function sortTableByColumn(columnIndex) {
-    const table = document.querySelector('#lookbench-table');
+function sortTableByColumn(tableId, columnIndex) {
+    const table = document.querySelector(`#${tableId}`);
     const tbody = table.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
     
