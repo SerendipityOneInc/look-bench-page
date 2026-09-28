@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./style/css/bulma.min.css">
     <link rel="stylesheet" href="./style/css/index.css">
     <link rel="stylesheet" href="./style/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <script src="https://kit.fontawesome.com/f8ddf9854a.js" crossorigin="anonymous"></script>
 
     <style>
@@ -42,6 +43,13 @@
 
                 <div class="publication-links" style="margin-top: 1.2rem;">
                     <span class="link-block">
+                        <a href="https://arxiv.org/abs/2609.31002"
+                           class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon"><i class="ai ai-arxiv"></i></span>
+                            <span>Paper</span>
+                        </a>
+                    </span>
+                    <span class="link-block">
                         <a href="https://huggingface.co/datasets/srpone/zoowork-shoprank-bench"
                            class="external-link button is-normal is-rounded is-dark">
                             <span class="icon"><p style="font-size:18px">🤗</p></span>
@@ -60,6 +68,13 @@
                            class="external-link button is-normal is-rounded is-dark">
                             <span class="icon"><i class="fab fa-github"></i></span>
                             <span>Code</span>
+                        </a>
+                    </span>
+                    <span class="link-block">
+                        <a href="https://huggingface.co/datasets/srpone/zoowork-shoprank-bench/blob/main/evaluate.py"
+                           class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon"><i class="fas fa-play"></i></span>
+                            <span>Eval script</span>
                         </a>
                     </span>
                 </div>
@@ -155,20 +170,18 @@
 
                 <h2 class="title is-3" style="margin-top: 2.5rem;">Evaluating a reranker</h2>
                 <div class="content" style="font-family: 'Noto Sans', sans-serif;">
-                    <p>Reranking support ships with the LookBench package:</p>
-                    <pre style="font-size: 0.85em;"><code>pip install look-bench[reranking]
-
-from datasets import ShopRankPairs
-from models import get_model
-from metrics import PairwiseAccuracyEvaluator
-
-pairs = ShopRankPairs.from_hub(text_format="structured")
-_, reranker = get_model("qwen3-reranker").load_model(
-    "Qwen/Qwen3-Reranker-4B", model_path="srpone/zoowork-shopranker-4b")
-
-results = PairwiseAccuracyEvaluator().evaluate_reranker(
-    reranker, list(pairs), preferred_key="preferred", rejected_key="rejected")
-print(results["pairwise_accuracy"])</code></pre>
+                    <p>The dataset repo ships <a href="https://huggingface.co/datasets/srpone/zoowork-shoprank-bench/blob/main/evaluate.py"><code>evaluate.py</code></a>, which runs the
+                        <a href="https://github.com/SerendipityOneInc/look-bench">LookBench</a> reranking harness
+                        on all 10,511 preference pairs in both formats and prints accuracy per tier with a
+                        query-clustered 95% CI:</p>
+                    <pre style="font-size: 0.85em;"><code>pip install torch transformers peft huggingface_hub
+curl -LO https://huggingface.co/datasets/srpone/zoowork-shoprank-bench/resolve/main/evaluate.py
+python evaluate.py --model srpone/zoowork-shopranker-4b   # or any Qwen3-Reranker</code></pre>
+                    <p style="font-size: 0.92em; color: #666;">
+                        The script clones LookBench on first run. For a ZooWork-ShopRanker repo it loads the
+                        base weights and the LoRA adapter from that repo; add <code>--adapter</code> to evaluate
+                        your own adapter on a Qwen3-Reranker base.
+                    </p>
                     <p style="font-size: 0.92em; color: #666;">
                         A model is correct on a pair when it scores the preferred candidate above the
                         rejected one. Ties are reported rather than silently resolved.
